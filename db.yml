@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres:12.1
+    environment:
+      POSTGRES_PASSWORD: Admin123456
+      POSTGRES_USER: postgres
+    volumes:
+      - ./db/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ./db/dumps:/dumps
+      - ./db/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./db/pg_hba.conf:/etc/postgresql/pg_hba.conf
+      - ./db/pg_ident.conf:/etc/postgresql/pg_ident.conf
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "35432:5432"
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+
+volumes:
+  db-data: {}

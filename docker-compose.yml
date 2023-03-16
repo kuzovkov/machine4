@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:
+  ubuntu:
+    privileged: true
+    build:
+      context: ./ubuntu
+      dockerfile: Dockerfile
+    #image: kuzovkov/machine4-ubuntu:latest
+    volumes:
+      - ./ubuntu/app:/app
+      - ./ubuntu/data:/datasave-maxmin-courses
+      - /dev/shm:/dev/shm
+      - ./ubuntu/start.sh:/usr/local/bin/start.sh
+      - ./ubuntu/startvnc.sh:/usr/local/bin/vnc
+    dns: 8.8.8.8
+    ports:
+      - "5901:5900"
+      - "6002:6001"
+    user: apps
+    entrypoint: "/usr/local/bin/start.sh"
+
