@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Demo Red5 (Subscriber HLS)</title>
+    <!-- Default Red5 Pro Playback Control styles. -->
+    <script src="/js/red5pro-sdk.min.js"></script>
+    <!-- Fullscreen shim. -->
+     <script src="https://cdn.jsdelivr.net/npm/red5pro-webrtc-sdk"></script>
+    <script src="/ls/screenfull.min.js"></script>
+  </head>
+  <body>
+    <video id="red5pro-subscriber"
+           class="red5pro-media red5pro-media-background"
+           autoplay controls>
+    </video>
+    <!-- Exposes `red5prosdk` on the window global. -->
+    <!-- Example script below. -->
+    <script src="/js/main_hls.js"></script>
+  </body>
+</html>

@@ -1,34 +1,42 @@
-install MetaTrader5
+Load test Red5pro server
 =======================
 
-Folks at MQT5 haven't compiled any version for Linux so far and the only method available is to Installed 
-Python3.x for Windows inside Wine64 and then continue further pip installation accordingly.
-
-I'm on Ubuntu 22.04 and successfully installed MetaTrader5, here are the steps.
-
+### Run
 ```bash
-sudo apt update -y
-sudo apt upgrade -y
-sudo apt install wine64
-cd ~/Desktop
-wget https://www.python.org/ftp/python/3.8.0/python-3.8.0-amd64.exe --no-check-certificate
-wget https://download.mql5.com/cdn/web/metaquotes.software.corp/mt5/mt5setup.exe --no-check-certificate
-wine64 uninstaller
-```
-select install and then select mt5setup.exe
-```bash
-wine64 cmd
-cd /folder_where_python3.8_setup.exe
-python-3.8.0-amd64.exe
-c:
-cd windows
-copy py.exe python.exe
-python -m pip install pip --upgrade
-exit
-wine64 cmd
-pip3 --version
-pip3 install jupyter
-pip3 install MetaTrader5
-jupyter notebook
+docker-compose build
+docker-compose -f docker-compose.yml -f nginx.yml up -d
 ```
 
+### Do tests
+
+Open in browser http://localhost
+
+![main page](screen2.png?raw=true)
+
+Press Start button
+
+![page publisher](screen1.png?raw=true)
+
+Edit server, port, stream name if need.
+
+Wait video will appear in video element.
+
+Press button `publish`.
+
+I left side will be evens list, on right side red5 server statistic for published steam.
+
+
+Run command (twice):
+```bash
+docker-compose exec ubuntu sh -c "export DISPLAY=:1.0 && /app/loadtest.sh 5" &
+```
+where 5 - number subscribers fro test
+
+Open VNC, connect to http://localhost:5901
+
+We can look browser windows and control video quality.
+
+Run command for stop testing:
+```bash
+docker-compose exec ubuntu sh -c "export DISPLAY=:1.0 && /app/stop.sh"
+```

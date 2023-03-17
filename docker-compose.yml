@@ -18,5 +18,5 @@ services:
       - "5901:5900"
       - "6002:6001"
     user: apps
-    entrypoint: "/usr/local/bin/start.sh"
+    #entrypoint: "/usr/local/bin/start.sh"
 

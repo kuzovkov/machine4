@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<title>Load test Red5pro server (Publisher)</title>
+<!-- Recommended shim for cross-browser WebRTC support. -->
+    <script src="https://webrtchacks.github.io/adapter/adapter-latest.js"></script>
+    <script src="/js/red5pro-sdk.min.js"></script>
+</head>
+<style>
+    .wrapper {width: 800px; height: 800px; top: calc(50% - 400px); left: calc(50% - 400px); text-align: center; vertical-align: middle; position: absolute;}
+    .wrapper button {width: 100px; height: 100px; border-radius: 50%; font-size: 20px; cursor: pointer; border: 0px;}
+    .wrapper button:hover {background-color: #bbbbbb; transition: 0.8s;}
+    .left {width: 300px; max-width: 300px; min-height: 700px; height: 600px; position: absolute; top: calc(50% - 400px);left: calc(150px);}
+    .left .events {border: 1px solid gray; border-radius: 5px; width: 100%; height: 90%; overflow-y: scroll;}
+    .right {width: 300px; max-width: 300px; min-height: 700px; height: 600px; position: absolute; top: calc(50% - 400px); right: calc(150px);}
+    .right .stat {border: 1px solid gray; border-radius: 5px; width: 100%; height: 90%; overflow-y: scroll;}
+    video {width: 100%;}
+
+    @media screen and (max-width: 1700px){
+       .left{left: calc(50px);}
+        .right {right: calc(50px);}
+    }
+
+    @media screen and (max-width: 1500px){
+       .left{left: calc(5px);}
+        .right {right: calc(5px);}
+        .wrapper {width: 700px; left: calc(50% - 350px);}
+    }
+
+    @media screen and (max-width: 1400px){
+       .left{left: calc(5px);}
+        .right {right: calc(5px);}
+        .wrapper {width: 600px; left: calc(50% - 300px);}
+    }
+
+    @media screen and (max-width: 1230px){
+       .left{left: calc(5px);}
+        .right {right: calc(5px);}
+        .wrapper {width: 400px; left: calc(50% - 200px);}
+    }
+
+</style>
+<body>
+
+    <!-- `autoplay` will immediately show preview video. `muted` will mute the audio to avoid feedback noise. -->
+
+    <!-- Example script below. -->
+    <div class="left">
+        <h5>Events</h5>
+        <div class="events"></div>
+    </div>
+    <div class="wrapper">
+        <h1>Load test Red5pro server (publisher)</h1>
+        <video id="red5pro-publisher" controls muted autoplay></video>
+        <ul style="list-style: none">
+            <p><label>Server: </label><input type="text" name="server" value="sm.loghic.com" placeholder="server"></p>
+            <p><label>port: </label><input type="number" name="port" value="443" placeholder="port"></p>
+            <p><label>Stream name: </label><input type="text" name="stream" value="627bbd17d7332" placeholder="stream"></p>
+            <button id="btn-start">publish</button>
+        </ul>
+        <hr>
+    </div>
+    <div class="right">
+        <h5>Stat</h5>
+        <div class="stat"></div>
+    </div>
+
+    <script src="/js/fetch.js"></script>
+    <script src="/js/main.js"></script>
+
+
+</body>
+
+</html>

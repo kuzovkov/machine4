@@ -18,7 +18,3 @@ services:
       DB_NAME: courses
       DB_PASS: Admin123456
 
-volumes:
-  db-data: {}
-  mysql-data: {}
-  redis-data: {}
