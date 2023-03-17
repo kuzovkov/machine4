@@ -23,14 +23,14 @@ Wait video will appear in video element.
 
 Press button `publish`.
 
-I left side will be evens list, on right side red5 server statistic for published steam.
-
-
 Run command (twice):
 ```bash
 docker-compose exec ubuntu sh -c "export DISPLAY=:1.0 && /app/loadtest.sh 5" &
 ```
 where 5 - number subscribers fro test
+
+I left side will be evens list, on right side red5 server statistic for published steam.
+
 
 Open VNC, connect to http://localhost:5901
 
