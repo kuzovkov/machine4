@@ -5,9 +5,12 @@ services:
      image: nginx:1.18-alpine
      ports:
        - "80:80"
+       - "443:443"
      dns: 8.8.8.8
      volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./nginx/web:/var/www/html
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
 

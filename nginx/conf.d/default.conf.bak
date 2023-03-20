@@ -1,6 +1,6 @@
 server {
+    server_name testload.kuzovkov12.ru;
     root /var/www/html;
-
     listen	80;
 
     location / {
@@ -10,9 +10,12 @@ server {
     }
 
     location /api {
-        # try to serve file directly, fallback to app.php
         proxy_pass http://sm.loghic.com:5080;
         proxy_http_version 1.1;
+    }
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
     }
 
 }

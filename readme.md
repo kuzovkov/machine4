@@ -40,3 +40,30 @@ Run command for stop testing:
 ```bash
 docker-compose exec ubuntu sh -c "export DISPLAY=:1.0 && /app/stop.sh"
 ```
+
+
+#### Get SSl certificates
+
+rename nginx/conf.d/default-ssl.conf -> nginx/conf.d/default-ssl.conf.bak
+
+```bash
+mv nginx/conf.d/default-ssl.conf nginx/conf.d/default-ssl.conf.bak
+mv nginx/conf.d/default.conf.bak nginx/conf.d/default.conf
+```
+Run nginx and certbot:
+```bash
+docker-compose -f nginx.yml -f certbot.yml up -d
+```
+
+```bash
+./certbot.sh <domain-name>
+
+mv nginx/conf.d/default-ssl.conf.bak nginx/conf.d/default-ssl.conf 
+mv nginx/conf.d/default.conf nginx/conf.d/default.conf.bak
+
+docker-compose -f nginx.yml -f certbot.yml stop
+docker-compose -f docker-compose.yml -f certbot.yml -f nginx.yml up -d
+```
+Go to https://domain-name/
+
+![test om domain](screen3.png?raw=true)
